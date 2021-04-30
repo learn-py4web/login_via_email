@@ -3,9 +3,9 @@ This file defines the database models
 """
 
 import datetime
-from .common import db, Field, auth
+from .common import db, Field
 from pydal.validators import *
-
+from .common import auth
 
 def get_user_email():
     return auth.current_user.get('email') if auth.current_user else None
