@@ -33,13 +33,13 @@ from .common import auth, url_signer
 from .models import get_user_email
 
 @action('index')
-@action.uses(db, auth, 'index.html')
+@action.uses('index.html', db, auth)
 def index():
     print("User:", get_user_email())
     return dict()
 
 @action('secure')
-@action.uses(db, auth.enforce(), 'secure.html')
+@action.uses('secure.html', db, auth.enforce())
 def secure():
     return dict()
 

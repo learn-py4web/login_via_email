@@ -30,13 +30,13 @@ class AuthByEmail(Fixture):
         self.__prerequisites__ = [session]
         self.default_path = default_path
         # Register path to login
-        f = action.uses(session, "auth_by_email_login.html")(self.login)
+        f = action.uses("auth_by_email_login.html", session)(self.login)
         action(LOGIN_PATH, method=["GET", "POST"])(f)
         # Register path to waiting
-        f = action.uses(session, "auth_by_email_wait.html")(self.wait)
+        f = action.uses("auth_by_email_wait.html", session)(self.wait)
         action(WAITING_PATH, method=["GET"])(f)
         # Register path to confirmation
-        f = action.uses(session, url_signer.verify(), "auth_by_email_wait.html")(self.confirm)
+        f = action.uses("auth_by_email_wait.html", session, url_signer.verify())(self.confirm)
         action(CONFIRMATION_PATH + "/<email>", method=["GET"])(f)
 
     @property
